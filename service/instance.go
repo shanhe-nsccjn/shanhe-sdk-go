@@ -571,6 +571,7 @@ type RunInstancesInput struct {
 	// CPUModel's available values: Westmere, SandyBridge, IvyBridge, Haswell, Broadwell
 	CPUModel *string `json:"cpu_model" name:"cpu_model" default:"Westmere" location:"params"`
 	Gpu      *int    `json:"gpu" name:"gpu" default:"0" location:"params"`
+	GpuClass *string `json:"gpu_class" name:"gpu_class" default:"0" location:"params"`
 	Hostname *string `json:"hostname" name:"hostname" location:"params"`
 	ImageID  *string `json:"image_id" name:"image_id" location:"params"` // Required
 	// InstanceClass's available values: 0, 1, 2, 3, 4, 5, 6, 100, 101, 200, 201, 300, 301
