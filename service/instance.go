@@ -602,224 +602,226 @@ type RunInstancesInput struct {
 	VxNets        []*string `json:"vxnets" name:"vxnets" location:"params"`
 }
 
-func (v *RunInstancesInput) Validate() error {
+func (v *RunInstancesInput) Validate() error { return nil }
 
-	if v.CPU != nil {
-		cpuValidValues := []string{"1", "2", "4", "8", "16"}
-		cpuParameterValue := fmt.Sprint(*v.CPU)
-
-		cpuIsValid := false
-		for _, value := range cpuValidValues {
-			if value == cpuParameterValue {
-				cpuIsValid = true
-			}
-		}
-
-		if !cpuIsValid {
-			return errors.ParameterValueNotAllowedError{
-				ParameterName:  "CPU",
-				ParameterValue: cpuParameterValue,
-				AllowedValues:  cpuValidValues,
-			}
-		}
-	}
-
-	if v.CPUMax != nil {
-		cpuMaxValidValues := []string{"1", "2", "4", "8", "16"}
-		cpuMaxParameterValue := fmt.Sprint(*v.CPUMax)
-
-		cpuMaxIsValid := false
-		for _, value := range cpuMaxValidValues {
-			if value == cpuMaxParameterValue {
-				cpuMaxIsValid = true
-			}
-		}
-
-		if !cpuMaxIsValid {
-			return errors.ParameterValueNotAllowedError{
-				ParameterName:  "CPUMax",
-				ParameterValue: cpuMaxParameterValue,
-				AllowedValues:  cpuMaxValidValues,
-			}
-		}
-	}
-
-	if v.CPUModel != nil {
-		cpuModelValidValues := []string{"Westmere", "SandyBridge", "IvyBridge", "Haswell", "Broadwell"}
-		cpuModelParameterValue := fmt.Sprint(*v.CPUModel)
-
-		cpuModelIsValid := false
-		for _, value := range cpuModelValidValues {
-			if value == cpuModelParameterValue {
-				cpuModelIsValid = true
-			}
-		}
-
-		if !cpuModelIsValid {
-			return errors.ParameterValueNotAllowedError{
-				ParameterName:  "CPUModel",
-				ParameterValue: cpuModelParameterValue,
-				AllowedValues:  cpuModelValidValues,
-			}
-		}
-	}
-
-	if v.ImageID == nil {
-		return errors.ParameterRequiredError{
-			ParameterName: "ImageID",
-			ParentName:    "RunInstancesInput",
-		}
-	}
-
-	if v.InstanceClass != nil {
-		instanceClassValidValues := []string{"0", "1", "2", "3", "4", "5", "6", "100", "101", "200", "201", "300", "301"}
-		instanceClassParameterValue := fmt.Sprint(*v.InstanceClass)
-
-		instanceClassIsValid := false
-		for _, value := range instanceClassValidValues {
-			if value == instanceClassParameterValue {
-				instanceClassIsValid = true
-			}
-		}
-
-		if !instanceClassIsValid {
-			return errors.ParameterValueNotAllowedError{
-				ParameterName:  "InstanceClass",
-				ParameterValue: instanceClassParameterValue,
-				AllowedValues:  instanceClassValidValues,
-			}
-		}
-	}
-
-	if v.LoginMode == nil {
-		return errors.ParameterRequiredError{
-			ParameterName: "LoginMode",
-			ParentName:    "RunInstancesInput",
-		}
-	}
-
-	if v.LoginMode != nil {
-		loginModeValidValues := []string{"keypair", "passwd"}
-		loginModeParameterValue := fmt.Sprint(*v.LoginMode)
-
-		loginModeIsValid := false
-		for _, value := range loginModeValidValues {
-			if value == loginModeParameterValue {
-				loginModeIsValid = true
-			}
-		}
-
-		if !loginModeIsValid {
-			return errors.ParameterValueNotAllowedError{
-				ParameterName:  "LoginMode",
-				ParameterValue: loginModeParameterValue,
-				AllowedValues:  loginModeValidValues,
-			}
-		}
-	}
-
-	if v.MemMax != nil {
-		memMaxValidValues := []string{"1024", "2048", "4096", "6144", "8192", "12288", "16384", "24576", "32768"}
-		memMaxParameterValue := fmt.Sprint(*v.MemMax)
-
-		memMaxIsValid := false
-		for _, value := range memMaxValidValues {
-			if value == memMaxParameterValue {
-				memMaxIsValid = true
-			}
-		}
-
-		if !memMaxIsValid {
-			return errors.ParameterValueNotAllowedError{
-				ParameterName:  "MemMax",
-				ParameterValue: memMaxParameterValue,
-				AllowedValues:  memMaxValidValues,
-			}
-		}
-	}
-
-	if v.Memory != nil {
-		memoryValidValues := []string{"1024", "2048", "4096", "6144", "8192", "12288", "16384", "24576", "32768"}
-		memoryParameterValue := fmt.Sprint(*v.Memory)
-
-		memoryIsValid := false
-		for _, value := range memoryValidValues {
-			if value == memoryParameterValue {
-				memoryIsValid = true
-			}
-		}
-
-		if !memoryIsValid {
-			return errors.ParameterValueNotAllowedError{
-				ParameterName:  "Memory",
-				ParameterValue: memoryParameterValue,
-				AllowedValues:  memoryValidValues,
-			}
-		}
-	}
-
-	if v.NeedNewSID != nil {
-		needNewSIDValidValues := []string{"0", "1"}
-		needNewSIDParameterValue := fmt.Sprint(*v.NeedNewSID)
-
-		needNewSIDIsValid := false
-		for _, value := range needNewSIDValidValues {
-			if value == needNewSIDParameterValue {
-				needNewSIDIsValid = true
-			}
-		}
-
-		if !needNewSIDIsValid {
-			return errors.ParameterValueNotAllowedError{
-				ParameterName:  "NeedNewSID",
-				ParameterValue: needNewSIDParameterValue,
-				AllowedValues:  needNewSIDValidValues,
-			}
-		}
-	}
-
-	if v.NeedUserdata != nil {
-		needUserdataValidValues := []string{"0", "1"}
-		needUserdataParameterValue := fmt.Sprint(*v.NeedUserdata)
-
-		needUserdataIsValid := false
-		for _, value := range needUserdataValidValues {
-			if value == needUserdataParameterValue {
-				needUserdataIsValid = true
-			}
-		}
-
-		if !needUserdataIsValid {
-			return errors.ParameterValueNotAllowedError{
-				ParameterName:  "NeedUserdata",
-				ParameterValue: needUserdataParameterValue,
-				AllowedValues:  needUserdataValidValues,
-			}
-		}
-	}
-
-	if v.UserdataType != nil {
-		userdataTypeValidValues := []string{"plain", "exec", "tar"}
-		userdataTypeParameterValue := fmt.Sprint(*v.UserdataType)
-
-		userdataTypeIsValid := false
-		for _, value := range userdataTypeValidValues {
-			if value == userdataTypeParameterValue {
-				userdataTypeIsValid = true
-			}
-		}
-
-		if !userdataTypeIsValid {
-			return errors.ParameterValueNotAllowedError{
-				ParameterName:  "UserdataType",
-				ParameterValue: userdataTypeParameterValue,
-				AllowedValues:  userdataTypeValidValues,
-			}
-		}
-	}
-
-	return nil
-}
+//func (v *RunInstancesInput) Validate() error {
+//
+//	if v.CPU != nil {
+//		cpuValidValues := []string{"1", "2", "4", "8", "16"}
+//		cpuParameterValue := fmt.Sprint(*v.CPU)
+//
+//		cpuIsValid := false
+//		for _, value := range cpuValidValues {
+//			if value == cpuParameterValue {
+//				cpuIsValid = true
+//			}
+//		}
+//
+//		if !cpuIsValid {
+//			return errors.ParameterValueNotAllowedError{
+//				ParameterName:  "CPU",
+//				ParameterValue: cpuParameterValue,
+//				AllowedValues:  cpuValidValues,
+//			}
+//		}
+//	}
+//
+//	if v.CPUMax != nil {
+//		cpuMaxValidValues := []string{"1", "2", "4", "8", "16"}
+//		cpuMaxParameterValue := fmt.Sprint(*v.CPUMax)
+//
+//		cpuMaxIsValid := false
+//		for _, value := range cpuMaxValidValues {
+//			if value == cpuMaxParameterValue {
+//				cpuMaxIsValid = true
+//			}
+//		}
+//
+//		if !cpuMaxIsValid {
+//			return errors.ParameterValueNotAllowedError{
+//				ParameterName:  "CPUMax",
+//				ParameterValue: cpuMaxParameterValue,
+//				AllowedValues:  cpuMaxValidValues,
+//			}
+//		}
+//	}
+//
+//	if v.CPUModel != nil {
+//		cpuModelValidValues := []string{"Westmere", "SandyBridge", "IvyBridge", "Haswell", "Broadwell"}
+//		cpuModelParameterValue := fmt.Sprint(*v.CPUModel)
+//
+//		cpuModelIsValid := false
+//		for _, value := range cpuModelValidValues {
+//			if value == cpuModelParameterValue {
+//				cpuModelIsValid = true
+//			}
+//		}
+//
+//		if !cpuModelIsValid {
+//			return errors.ParameterValueNotAllowedError{
+//				ParameterName:  "CPUModel",
+//				ParameterValue: cpuModelParameterValue,
+//				AllowedValues:  cpuModelValidValues,
+//			}
+//		}
+//	}
+//
+//	if v.ImageID == nil {
+//		return errors.ParameterRequiredError{
+//			ParameterName: "ImageID",
+//			ParentName:    "RunInstancesInput",
+//		}
+//	}
+//
+//	if v.InstanceClass != nil {
+//		instanceClassValidValues := []string{"0", "1", "2", "3", "4", "5", "6", "100", "101", "200", "201", "300", "301"}
+//		instanceClassParameterValue := fmt.Sprint(*v.InstanceClass)
+//
+//		instanceClassIsValid := false
+//		for _, value := range instanceClassValidValues {
+//			if value == instanceClassParameterValue {
+//				instanceClassIsValid = true
+//			}
+//		}
+//
+//		if !instanceClassIsValid {
+//			return errors.ParameterValueNotAllowedError{
+//				ParameterName:  "InstanceClass",
+//				ParameterValue: instanceClassParameterValue,
+//				AllowedValues:  instanceClassValidValues,
+//			}
+//		}
+//	}
+//
+//	if v.LoginMode == nil {
+//		return errors.ParameterRequiredError{
+//			ParameterName: "LoginMode",
+//			ParentName:    "RunInstancesInput",
+//		}
+//	}
+//
+//	if v.LoginMode != nil {
+//		loginModeValidValues := []string{"keypair", "passwd"}
+//		loginModeParameterValue := fmt.Sprint(*v.LoginMode)
+//
+//		loginModeIsValid := false
+//		for _, value := range loginModeValidValues {
+//			if value == loginModeParameterValue {
+//				loginModeIsValid = true
+//			}
+//		}
+//
+//		if !loginModeIsValid {
+//			return errors.ParameterValueNotAllowedError{
+//				ParameterName:  "LoginMode",
+//				ParameterValue: loginModeParameterValue,
+//				AllowedValues:  loginModeValidValues,
+//			}
+//		}
+//	}
+//
+//	if v.MemMax != nil {
+//		memMaxValidValues := []string{"1024", "2048", "4096", "6144", "8192", "12288", "16384", "24576", "32768"}
+//		memMaxParameterValue := fmt.Sprint(*v.MemMax)
+//
+//		memMaxIsValid := false
+//		for _, value := range memMaxValidValues {
+//			if value == memMaxParameterValue {
+//				memMaxIsValid = true
+//			}
+//		}
+//
+//		if !memMaxIsValid {
+//			return errors.ParameterValueNotAllowedError{
+//				ParameterName:  "MemMax",
+//				ParameterValue: memMaxParameterValue,
+//				AllowedValues:  memMaxValidValues,
+//			}
+//		}
+//	}
+//
+//	if v.Memory != nil {
+//		memoryValidValues := []string{"1024", "2048", "4096", "6144", "8192", "12288", "16384", "24576", "32768"}
+//		memoryParameterValue := fmt.Sprint(*v.Memory)
+//
+//		memoryIsValid := false
+//		for _, value := range memoryValidValues {
+//			if value == memoryParameterValue {
+//				memoryIsValid = true
+//			}
+//		}
+//
+//		if !memoryIsValid {
+//			return errors.ParameterValueNotAllowedError{
+//				ParameterName:  "Memory",
+//				ParameterValue: memoryParameterValue,
+//				AllowedValues:  memoryValidValues,
+//			}
+//		}
+//	}
+//
+//	if v.NeedNewSID != nil {
+//		needNewSIDValidValues := []string{"0", "1"}
+//		needNewSIDParameterValue := fmt.Sprint(*v.NeedNewSID)
+//
+//		needNewSIDIsValid := false
+//		for _, value := range needNewSIDValidValues {
+//			if value == needNewSIDParameterValue {
+//				needNewSIDIsValid = true
+//			}
+//		}
+//
+//		if !needNewSIDIsValid {
+//			return errors.ParameterValueNotAllowedError{
+//				ParameterName:  "NeedNewSID",
+//				ParameterValue: needNewSIDParameterValue,
+//				AllowedValues:  needNewSIDValidValues,
+//			}
+//		}
+//	}
+//
+//	if v.NeedUserdata != nil {
+//		needUserdataValidValues := []string{"0", "1"}
+//		needUserdataParameterValue := fmt.Sprint(*v.NeedUserdata)
+//
+//		needUserdataIsValid := false
+//		for _, value := range needUserdataValidValues {
+//			if value == needUserdataParameterValue {
+//				needUserdataIsValid = true
+//			}
+//		}
+//
+//		if !needUserdataIsValid {
+//			return errors.ParameterValueNotAllowedError{
+//				ParameterName:  "NeedUserdata",
+//				ParameterValue: needUserdataParameterValue,
+//				AllowedValues:  needUserdataValidValues,
+//			}
+//		}
+//	}
+//
+//	if v.UserdataType != nil {
+//		userdataTypeValidValues := []string{"plain", "exec", "tar"}
+//		userdataTypeParameterValue := fmt.Sprint(*v.UserdataType)
+//
+//		userdataTypeIsValid := false
+//		for _, value := range userdataTypeValidValues {
+//			if value == userdataTypeParameterValue {
+//				userdataTypeIsValid = true
+//			}
+//		}
+//
+//		if !userdataTypeIsValid {
+//			return errors.ParameterValueNotAllowedError{
+//				ParameterName:  "UserdataType",
+//				ParameterValue: userdataTypeParameterValue,
+//				AllowedValues:  userdataTypeValidValues,
+//			}
+//		}
+//	}
+//
+//	return nil
+//}
 
 type RunInstancesOutput struct {
 	Message   *string   `json:"message" name:"message"`
