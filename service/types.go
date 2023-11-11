@@ -1138,6 +1138,12 @@ type InstanceType struct {
 	Status       *string `json:"status" name:"status"`
 	VCPUsCurrent *int    `json:"vcpus_current" name:"vcpus_current"`
 	ZoneID       *string `json:"zone_id" name:"zone_id"`
+	ExtraInfo    *string `json:"extra_info" name:"extra_info"`
+}
+
+type InstanceTypeExtraInfo struct {
+	GpuClass *string `json:"gpu_class" name:"gpu_class"`
+	GpuCount *string `json:"gpu_count" name:"gpu_count"`
 }
 
 func (v *InstanceType) Validate() error {
